@@ -10,9 +10,11 @@ export default function Form() {
   })
 
   const handlechange = (e : ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {  
+    const isNumberFlied = ['category', "calories"].includes(e.target.id)
     setActivity({
+
       ...activity,
-      [e.target.id]: e.target.value
+      [e.target.id]: isNumberFlied ? +e.target.value : e.target.value
     })
       
   }
