@@ -4,9 +4,9 @@ import { useState, ChangeEvent } from "react"
 export default function Form() {
 
   const [ activity, setActivity] = useState({
-    category: 1,
-    name: '',
-    calories: 0,
+      category: 1,
+      name: '',
+      calories: 0,
   })
 
   const handlechange = (e : ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {  
@@ -22,10 +22,16 @@ export default function Form() {
     return name.trim() !== "" && calories > 0
   }
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>)  => {
+    e.preventDefault
+  }
+
   return (
     
     <form 
       className="space-y-5 bg-white shadow p-10 rounded-lg"
+      onSubmit={handleSubmit}
+
     >
       <div className="grid grid-cols-1 gap-3">
         
@@ -81,8 +87,9 @@ export default function Form() {
       <input 
         type="submit" 
         className="bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold text-white cursor-pointer uppercase disabled:opacity-10"
-        value={activity.category === 1 ? "GUARDAR COMIDA" : "GUARDAR EJERCICIO"}
+        value={activity.category === 1 ? "Guardar comida" : "Guardar ejercicio"}
         disabled={!isValidActivity()}
+
       />
 
       
