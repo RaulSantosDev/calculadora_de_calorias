@@ -13,12 +13,16 @@ export const initialState : ActivityState = {
 
 }
 
-export const activityReducer = ( state: ActivityState = initialState, action: ActivityActions) => {
+export const activityReducer = ( state : ActivityState = initialState, action : ActivityActions) => {
     
     if(action.type === 'save-activity'){
-
-        console.log("Desde save-activity")
+        // Este código maneja la lógica para actualizar el state.
         
+        return {
+            ...state,
+            activities : [...state.activities, action.payload.newActivity]
+        }
+
     }
     return state
 }
