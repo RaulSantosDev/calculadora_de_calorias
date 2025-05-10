@@ -1,6 +1,7 @@
 import { useReducer } from "react"
 import  Form  from "./components/Form"
 import { activityReducer, initialState } from "./reducers/activity-reducer"
+import ActivityList from "./components/ActivityList"
 
 function App() {    
 
@@ -31,9 +32,14 @@ function App() {
             </div>
         </section>
 
-        <footer>
+        <section className="bg-slate-100 p-10 mx-auto max-w-4xl">
 
-        </footer>
+            < ActivityList 
+                activities={state.activities}
+            />
+
+        </section>
+
     </>
   )
 }
