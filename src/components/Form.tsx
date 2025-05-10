@@ -1,18 +1,20 @@
 import { categories } from "../data/categories"
 import { useState, ChangeEvent, Dispatch } from "react"
-import { ActivityActions } from "../reducers/activity-reducer"
+import { ActivityActions, initialState } from "../reducers/activity-reducer"
 
 type FormProps = {
   dispatch : Dispatch<ActivityActions>
 }
 
+const initialState = {
+    category: 1,
+    name: '',
+    calories: 0,
+}
+
 export default function Form({dispatch} : FormProps) {
 
-  const [ activity, setActivity] = useState({
-      category: 1,
-      name: '',
-      calories: 0,
-  })
+  const [ activity, setActivity] = useState(initialState)
 
   const handlechange = (e : ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {  
     const isNumberFlied = ['category', "calories"].includes(e.target.id)
@@ -31,6 +33,8 @@ export default function Form({dispatch} : FormProps) {
     e.preventDefault()
 
     dispatch({ type: "save-activity", payload: {newActivity: activity}})
+
+    setActivity(initialState)
   }
 
   return (
