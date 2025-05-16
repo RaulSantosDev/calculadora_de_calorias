@@ -1,10 +1,11 @@
 import { v4 as uuidv4 } from 'uuid'
 import { categories } from "../data/categories"
-import { useState, ChangeEvent, Dispatch } from "react"
-import { ActivityActions} from "../reducers/activity-reducer"
+import { useState, ChangeEvent, Dispatch, useEffect } from "react"
+import { ActivityActions, ActivityState} from "../reducers/activity-reducer"
 
 type FormProps = {
-  dispatch : Dispatch<ActivityActions>
+  dispatch : Dispatch<ActivityActions>,
+  state: ActivityState
 }
 
 const initialState = {
@@ -14,9 +15,17 @@ const initialState = {
     calories: 0,
 }
 
-export default function Form({dispatch} : FormProps) {
+export default function Form({dispatch, state} : FormProps) {
 
   const [ activity, setActivity] = useState(initialState)
+
+  useEffect(() => {
+      if(state.activeId){
+        const selectActivity = state.activities.filter( stateActivity => stateActivity.id === state.activeId)[0]
+        setActivity(selectActivity)
+      }
+
+  }, [state.activeId])
 
   const handlechange = (e : ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {  
     const isNumberFlied = ['category', "calories"].includes(e.target.id)
@@ -68,7 +77,7 @@ export default function Form({dispatch} : FormProps) {
 
             ))}
 
-            
+
           </select>
       </div>
 
@@ -110,6 +119,8 @@ export default function Form({dispatch} : FormProps) {
 
       
     </form>
+
+            
   )
 }
 

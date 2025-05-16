@@ -17,6 +17,7 @@ function App() {
 
                 <button 
                     className="bg-black rounded-sm p-2  text-white font-bold shadow-black hover:cursor-pointer hover:shadow"
+                    
                 >
                     Reiniciar
                 </button>
@@ -28,6 +29,7 @@ function App() {
             <div className="max-w-4xl mx-auto">
                 <Form
                     dispatch={dispatch}
+                    state={state}
                 />
             </div>
         </section>
