@@ -36,6 +36,7 @@ function App() {
 
             < ActivityList 
                 activities={state.activities}
+                dispatch={dispatch}
             />
 
         </section>

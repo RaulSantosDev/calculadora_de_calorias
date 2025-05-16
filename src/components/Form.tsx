@@ -66,9 +66,9 @@ export default function Form({dispatch} : FormProps) {
                 {category.name}
               </option>
 
-            )
-              
-            )}
+            ))}
+
+            
           </select>
       </div>
 
