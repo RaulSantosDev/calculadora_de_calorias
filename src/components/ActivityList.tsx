@@ -52,7 +52,7 @@ export default function ActivityList({activities, dispatch} : ActivityListProps)
                                 
                             >
                                 <button
-                                    onClick={() => dispatch({type : "set-activeId", payload: {id: activity.id}})}
+                                    onClick={ () => dispatch({type : "set-activeId", payload: {id: activity.id}})}
                                 >
                                     < PencilSquareIcon 
                                         className="h-8 w-8 text-gray-800 hover:cursor-pointer"
