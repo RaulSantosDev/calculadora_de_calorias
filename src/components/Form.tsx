@@ -21,7 +21,7 @@ export default function Form({dispatch, state} : FormProps) {
 
   useEffect(() => {
       if(state.activeId){
-        const selectActivity = state.activities.filter( stateActivity => stateActivity.id === state.activeId)[0]
+        const selectActivity = state.activities.filter( stateActivity => stateActivity.id === state.activeId)[0] // Esta sintaxis es para convertir el arreglo a un objeto.
         setActivity(selectActivity)
       }
 

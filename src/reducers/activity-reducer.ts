@@ -19,11 +19,20 @@ export const initialState : ActivityState = {
 export const activityReducer = ( state : ActivityState = initialState, action : ActivityActions) => {
     
     if(action.type === 'save-activity'){
-        // Este código maneja la lógica para actualizar el state.
+        
+        let updatedActivities : Activity [] = []
+
+        if(state.activeId){
+            updatedActivities = state.activities.map( activity => activity.id === state.activeId ? action.payload.newActivity : activity)
+
+        } else {
+            updatedActivities = [...state.activities, action.payload.newActivity]
+        }
         
         return {
             ...state,
-            activities : [...state.activities, action.payload.newActivity]
+            activities : updatedActivities,
+            activeId: ""
         }
     }
 
@@ -31,6 +40,7 @@ export const activityReducer = ( state : ActivityState = initialState, action : 
         return{
             ...state,
             activeId: action.payload.id
+            
         }
     }
     return state
